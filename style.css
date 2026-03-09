@@ -1,20 +1,53 @@
 
+:root {
+    --bg-color: #f0f0f0;
+    --container-bg: #ffffff;
+    --text-color: #222222;
+    --number-bg: #eeeeee;
+    --number-color: #222222;
+    --btn-bg: #4a90e2;
+    --btn-color: #ffffff;
+    --btn-hover: #357abd;
+    --toggle-bg: #cccccc;
+}
+
+body.dark {
+    --bg-color: #1a1a2e;
+    --container-bg: #16213e;
+    --text-color: #e0e0e0;
+    --number-bg: #0f3460;
+    --number-color: #e0e0e0;
+    --btn-bg: #e94560;
+    --btn-color: #ffffff;
+    --btn-hover: #c73652;
+    --toggle-bg: #444;
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
 }
 
 .container {
     text-align: center;
+    background-color: var(--container-bg);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
 }
 
 .lotto-numbers {
     display: flex;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 .number {
@@ -22,15 +55,44 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: var(--number-bg);
+    color: var(--number-color);
     margin: 0 5px;
     line-height: 40px;
     text-align: center;
     font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #generate-btn {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+#generate-btn:hover {
+    background-color: var(--btn-hover);
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--toggle-bg);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
