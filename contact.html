@@ -8,7 +8,32 @@
     <style>
         body {
             align-items: flex-start;
-            padding: 40px 16px;
+            padding: 70px 16px 80px;
+        }
+
+        #home-btn {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            background: var(--toggle-bg);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            font-family: sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #home-btn:hover {
+            background: var(--btn-bg);
+            color: #fff;
         }
 
         .container {
@@ -83,22 +108,80 @@
 
         .success-msg {
             display: none;
-            margin-top: 20px;
-            padding: 14px;
-            border-radius: 8px;
-            background-color: #d4edda;
-            color: #155724;
-            font-size: 15px;
+            text-align: center;
+            padding: 40px 20px;
         }
 
-        body.dark .success-msg {
-            background-color: #1e4d2b;
-            color: #a3d9b1;
+        .success-msg .check-icon {
+            font-size: 52px;
+            margin-bottom: 16px;
+        }
+
+        .success-msg h2 {
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .success-msg p {
+            font-size: 14px;
+            opacity: 0.6;
+            margin-bottom: 28px;
+        }
+
+        .home-btn-large {
+            display: inline-block;
+            padding: 12px 32px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: var(--btn-bg);
+            color: var(--btn-color);
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-btn-large:hover {
+            background-color: var(--btn-hover);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--container-bg);
+            border-top: 1px solid var(--number-bg);
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 13px;
+            font-family: sans-serif;
+            padding: 6px 24px;
+            border-radius: 20px;
+            transition: background-color 0.2s, color 0.2s;
+            opacity: 0.6;
+        }
+
+        .bottom-nav a:hover,
+        .bottom-nav a.active {
+            background: var(--btn-bg);
+            color: #fff;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
+    <a href="index.html" id="home-btn">🏠 Home</a>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+
     <div class="container">
         <h1>제휴 문의</h1>
         <p class="subtitle">제휴 및 광고 관련 문의를 남겨주시면 빠르게 답변드리겠습니다.</p>
@@ -133,12 +216,19 @@
         </form>
 
         <div class="success-msg" id="success-msg">
-            문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.
+            <div class="check-icon">✅</div>
+            <h2>문의가 접수되었습니다!</h2>
+            <p>빠른 시일 내에 연락드리겠습니다.</p>
+            <a href="index.html" class="home-btn-large">🏠 홈으로 돌아가기</a>
         </div>
     </div>
 
+    <nav class="bottom-nav">
+        <a href="index.html">Home</a>
+        <a href="contact.html" class="active">Contact Us</a>
+    </nav>
+
     <script>
-        // Theme toggle (same as main page)
         const toggle = document.getElementById('theme-toggle');
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark');
@@ -151,7 +241,6 @@
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
-        // Formspree AJAX submit
         const form = document.getElementById('contact-form');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
